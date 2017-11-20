@@ -7,9 +7,12 @@ $(()=> {
    api_key_from_url = api_key_regex.exec(window.location.href)
    if (api_key_from_url){
      dev_json_file = "//updown.io/api/checks?" + api_key_from_url
-     console.log(dev_json_file)
+     console.log("Using live data endpoint from " + dev_json_file)
+   }else if(/sample/.test(window.location.href)){
+     dev_json_file = sample_json_file;
+     console.log("Using the sample data from this endpoint https://gist.githubusercontent.com/Rio517/c523873cd4495456a88cac8f1860461b/raw/13f388a8cc6ca73d6f2680606c85b1420829fd9a/sample.json")
    }else{
-     console.log("Using the ")
+     console.log("Using the live data endpoint from  https://updown.io/api/checks?api-key=ro-pz3x1zy4ae63yhygraqe")
    }
 
    $.getJSON(dev_json_file, data => {
