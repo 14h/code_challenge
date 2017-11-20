@@ -1,0 +1,22 @@
+{
+  "name": "code_challenge",
+  "version": "1.0.0",
+  "description": "updown.io code challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdallahkawji/code_challenge.git"
+  },
+  "author": "Abdallah Kawji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abdallahkawji/code_challenge/issues"
+  },
+  "homepage": "https://github.com/abdallahkawji/code_challenge#readme",
+  "dependencies": {
+    "firebase": "^4.6.2"
+  }
+}
