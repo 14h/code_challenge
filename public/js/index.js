@@ -1,20 +1,30 @@
 
 $(()=> {
+
+
+   //Development JSON file
    let sample_json_file = "//gist.githubusercontent.com/Rio517/c523873cd4495456a88cac8f1860461b/raw/13f388a8cc6ca73d6f2680606c85b1420829fd9a/sample.json"
+   //Production JSON file
    let dev_json_file = "//updown.io/api/checks?api-key=ro-pz3x1zy4ae63yhygraqe"
+   //Table rows fetched from the JSON file
    let tblRows = [];
+   //fetching API key from url
    let api_key_regex = /api-key=.*/
    api_key_from_url = api_key_regex.exec(window.location.href)
+   //api-key=.* was in the URL
    if (api_key_from_url){
      dev_json_file = "//updown.io/api/checks?" + api_key_from_url
      console.log("Using live data endpoint from " + dev_json_file)
+   //if /sample was in the URL, use the development JSON file
    }else if(/sample/.test(window.location.href)){
      dev_json_file = sample_json_file;
      console.log("Using the sample data from this endpoint https://gist.githubusercontent.com/Rio517/c523873cd4495456a88cac8f1860461b/raw/13f388a8cc6ca73d6f2680606c85b1420829fd9a/sample.json")
+   //Producion JSON file
    }else{
+     //dev_json_file = "//updown.io/api/checks?api-key=ro-pz3x1zy4ae63yhygraqe"
      console.log("Using the live data endpoint from  https://updown.io/api/checks?api-key=ro-pz3x1zy4ae63yhygraqe")
    }
-
+   //geting JSON file from the endpoint
    $.getJSON(dev_json_file, data => {
        $.each(data, function(i, f) {
           let status = "up"
@@ -47,10 +57,11 @@ $(()=> {
           }
           description = "<div class=\"description text-muted small\" >" + description + "</div>"
           let service = "<tr>" + "<td>" +  "<a href=\"" + f.url + "\""+ " class=\"text-info \""  +">" + f.alias +"</a>" +"<br>" + description +"</td>"
-          let uptime =  "<td>" + f.uptime + "%" + "</td>" + "</tr>"
+          let uptime =  "<td>" + f.uptime + "%" + "</td>" + "</tr>";
+          //table row in the right format
           let tblRow = service + status + uptime
-
-          if (service.toLowerCase().indexOf("hacked") <= 0){
+          //Filter   out   any   result   that   says   “hacked”   in   the   alias
+          if (service.toLowerCase().indexOf("hacked") <= 0 ){
             tblRows.push(tblRow)
             $(tblRow).appendTo("#updown_table tbody");
           }

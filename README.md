@@ -17,5 +17,6 @@ https://sample-60d1c.firebaseapp.com/api-key=ro-pz3x1zy4ae63yhygraqe
 
 # Default Setup:
 - `npm install`  -> to install all Dependencies including firebase
+-`firebase login` -> to login with google credentials ( make sure you have enough rules to view/edit the project, please send an email to abdallah.kawji@gmail.com to ask for permission if you don't have it already)
 - `firebase serve` to serve
 - `firebase deploy` to deploy
